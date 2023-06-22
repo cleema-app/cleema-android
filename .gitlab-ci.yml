@@ -1,0 +1,15 @@
+stages:
+  - test
+
+test:
+  stage: test
+  tags:
+    - android
+  script:
+    - ./gradlew -Pci --console=plain :app:testDevelopDebugUnitTest
+  artifacts:
+    paths:
+      - app/build/test-results/**/TEST-*.xml
+    reports:
+      junit: app/build/test-results/**/TEST-*.xml
+  when: always
